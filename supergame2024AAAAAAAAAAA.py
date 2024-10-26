@@ -1,28 +1,36 @@
 import os
 import msvcrt
-b = 1
-c = 1
-move = 0
-lock = 100
+class Player:
+    health = 3 
+    coordX = 1
+    coordY = 1
+    def MoveRight(self):
+        os.system('cls')
+        self.coordX += 1
+        print(self.coordY*'\n' + self.coordX*" " + '@')
+    def MoveLeft(self):
+        os.system('cls')
+        self.coordX -= 1
+        print(self.coordY*'\n' + self.coordX*" " + '@')
+    def MoveUp(self):
+        os.system('cls')
+        self.coordY -= 1
+        print(self.coordY*'\n' + self.coordX*" " + '@')
+    def MoveDown(self):
+        os.system('cls')
+        self.coordY += 1
+        print(self.coordY*'\n' + self.coordX*" " + '@')
+
+P = Player()
+lock = 20
+
 while 1:
     uinput = msvcrt.getch().decode('ASCII')
-    if(uinput == 'd' and move < lock or uinput == 'D' and move < lock):
-        move += 1
-        os.system('cls')
-        b+=1
-        print(c*'\n' + b*" " + '@')    
-    if(uinput == 'A' and move < lock or uinput == 'a' and move < lock):
-        move += 1
-        os.system('cls')
-        b-=1
-        print(c*'\n' + b*" " + '@')    
-    if(uinput == 'W' and move < lock or uinput == 'w' and move < lock):
-        move += 1
-        os.system('cls')
-        c = c-1
-        print(c*'\n' + b*" " + '@')
-    if(uinput == 'S' and move < lock or uinput == 's' and move < lock):
-        move += 1
-        os.system('cls')
-        c = c+1
-        print(c*'\n' + b*" " + '@')  
+    if(uinput == 'd' and P.coordX < lock  or uinput == 'D' and P.coordX < lock):   
+        P.MoveRight()
+    if(uinput == 'A' and P.coordX > 0 or uinput == 'a' and P.coordX > 0):    
+        P.MoveLeft()
+    if(uinput == 'W' and P.coordY > 0 or uinput == 'w' and P.coordY > 0):
+        P.MoveUp()
+    if(uinput == 'S' and P.coordY < lock or uinput == 's' and P.coordY < lock):
+        P.MoveDown()
